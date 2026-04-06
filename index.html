@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Medicine Guide - အိမ်သုံးဆေးဝါးလမ်းညွန်</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4CAF50;
+            --secondary: #45a049;
+            --accent: #2196F3;
+            --warning: #FF9800;
+            --danger: #F44336;
+            --success: #4CAF50;
+            --info: #2196F3;
+            --light: #f5f5f5;
+            --dark: #1a1a2e;
+            --white: #fff;
+        }
+
+        body {
+            font-family: 'Padauk', 'Myanmar3', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 50%, #A5D6A7 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ============== HEADER ============== */
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 50%, #2e7d32 100%);
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 50px rgba(76, 175, 80, 0.4);
+            animation: slideInDown 0.6s ease-out;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2), transparent);
+            pointer-events: none;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .lang-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .lang-btn {
+            padding: 10px 16px;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #4CAF50;
+            border-color: #4CAF50;
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ============== SEARCH BAR ============== */
+        .search-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-input-group {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #E8F5E9;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Padauk', 'Myanmar3', 'Segoe UI', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Padauk', 'Myanmar3', 'Segoe UI', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #4CAF50;
+        }
+
+        .btn-secondary:hover {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #F44336 0%, #D32F2F 100%);
+            color: white;
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        /* ============== NAV TABS ============== */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-tab {
+            padding: 12px 20px;
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13px;
+            transition: all 0.3s;
+            font-family: 'Padauk', 'Myanmar3', 'Segoe UI', sans-serif;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border-color: #2196F3;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        /* ============== TAB CONTENT ============== */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ============== CARDS ============== */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            animation: slideInUp 0.5s ease-out;
+            transition: all 0.3s;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .card:hover {
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .card-icon {
+            font-size: 32px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a2e;
+        }
+
+        /* ============== MEDICINE CARD ============== */
+        .medicine-card {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #4CAF50;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .medicine-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+        }
+
+        .medicine-card.active {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border-left-color: white;
+        }
+
+        .medicine-name {
+            font-size: 18px;
+            font-weight: 800;
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+
+        .medicine-card.active .medicine-name {
+            color: white;
+        }
+
+        .medicine-type {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .medicine-card.active .medicine-type {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .medicine-info {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .medicine-card.active .medicine-info {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* ============== DANGER BADGE ============== */
+        .danger-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #F44336 0%, #D32F2F 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+
+        .warning-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+
+        .safe-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+
+        /* ============== INFO BOX ============== */
+        .info-box {
+            background: #FFF3E0;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #FF9800;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 12px;
+            color: #E65100;
+            line-height: 1.6;
+        }
+
+        .info-box-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .danger-box {
+            background: #FFEBEE;
+            border-left-color: #F44336;
+            color: #C62828;
+        }
+
+        .success-box {
+            background: #E8F5E9;
+            border-left-color: #4CAF50;
+            color: #1B5E20;
+        }
+
+        .info-box-header {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        /* ============== DOSAGE TABLE ============== */
+        .dosage-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 12px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .dosage-table th {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .dosage-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .dosage-table tr:hover {
+            background: #f0f0f0;
+        }
+
+        .dosage-table tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+
+        /* ============== SYMPTOMS ============== */
+        .symptom-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .symptom-item {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #2196F3;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .symptom-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(33, 150, 243, 0.2);
+        }
+
+        .symptom-item.active {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            border-left-color: white;
+        }
+
+        .symptom-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .symptom-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1565C0;
+        }
+
+        .symptom-item.active .symptom-name {
+            color: white;
+        }
+
+        /* ============== CHECKLIST ============== */
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .checklist-item:hover {
+            background: #E8F5E9;
+            border-left-color: #4CAF50;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checklist-item.completed {
+            background: #E8F5E9;
+            opacity: 0.7;
+            border-left-color: #4CAF50;
+        }
+
+        .checklist-item.completed label {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .checklist-item label {
+            flex: 1;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* ============== ALERTS ============== */
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2000;
+            animation: slideInRight 0.3s ease-out;
+            font-family: 'Padauk', 'Myanmar3', 'Segoe UI', sans-serif;
+            font-weight: 600;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .alert.success {
+            border-left: 4px solid #4CAF50;
+            color: #2E7D32;
+        }
+
+        .alert.warning {
+            border-left: 4px solid #FF9800;
+            color: #E65100;
+        }
+
+        .alert.danger {
+            border-left: 4px solid #F44336;
+            color: #C62828;
+        }
+
+        .alert.info {
+            border-left: 4px solid #2196F3;
+            color: #1565C0;
+        }
+
+        /* ============== MODAL ============== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 15px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1a1a2e;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #4CAF50;
+        }
+
+        .modal-close:hover {
+            color: #2E7D32;
+        }
+
+        /* ============== DOCTOR LOCATION ============== */
+        .doctor-location-card {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .doctor-location-name {
+            font-size: 16px;
+            font-weight: 800;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .doctor-location-info {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .doctor-location-distance {
+            font-size: 12px;
+            color: #FF9800;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .doctor-call-btn {
+            font-size: 12px;
+            padding: 8px 15px;
+        }
+
+        /* ============== RESPONSIVE ============== */
+        @media (max-width: 768px) {
+            .header {
+                padding: 25px 20px;
+            }
+
+            .header h1 {
+                font-size: 36px;
+                flex-direction: column;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                width: 100%;
+                text-align: center;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .search-section {
+                flex-direction: column;
+            }
+
+            .search-input-group {
+                flex-direction: column;
+            }
+
+            .dosage-table {
+                font-size: 11px;
+            }
+
+            .dosage-table th,
+            .dosage-table td {
+                padding: 8px;
+            }
+
+            .symptom-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .alert {
+                right: 10px;
+                left: 10px;
+            }
+
+            .lang-btn {
+                padding: 8px 12px;
+                font-size: 11px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+
+            .modal-title {
+                font-size: 20px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 10px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ============== GRID LAYOUT ============== */
+        .medicine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .medicine-item-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #4CAF50;
+            transition: all 0.3s;
+        }
+
+        .medicine-item-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.2);
+        }
+
+        .medicine-item-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+
+        .medicine-item-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .medicine-item-usage {
+            background: #F1F8E9;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-content">
+            <h1>🏥 Home Medicine Guide</h1>
+            <p id="headerSub">အိမ်သုံးဆေးဝါးလမ်းညွန်</p>
+            <p style="font-size: 13px; margin-top: 10px; opacity: 0.9;">⚠️ <span id="warningText">ဆရာဝန်မရှိသောနေရာ / အန္တရာယ်ရှိသောဆေးများ</span></p>
+            <div class="lang-selector">
+                <button class="lang-btn active" onclick="setLanguage('my')" id="myBtn">MY</button>
+                <button class="lang-btn" onclick="setLanguage('en')" id="enBtn">EN</button>
+                <button class="lang-btn" onclick="setLanguage('th')" id="thBtn">TH</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- SEARCH SECTION -->
+        <div class="search-section">
+            <div class="search-input-group">
+                <input type="text" class="search-input" id="searchInput" placeholder="🔍 ဆေးအမည်သို့မဟုတ်လက္ခဏာများ ရှာဖွေခြင်း...">
+                <button class="btn btn-primary" onclick="searchMedicines()">🔍 ရှာဖွေ</button>
+            </div>
+            <button class="btn btn-secondary" onclick="switchTab('emergencies')">⚠️ အရေးပေလ် အခြေအနေများ</button>
+        </div>
+
+        <!-- NAVIGATION TABS -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('home')">🏠 <span id="homeTab">အဆောင်အင်္ဂါ</span></button>
+            <button class="nav-tab" onclick="switchTab('medicines')">💊 <span id="medicinesTab">ဆေးများ</span></button>
+            <button class="nav-tab" onclick="switchTab('symptoms')">🤒 <span id="symptomsTab">လက္ခဏာများ</span></button>
+            <button class="nav-tab" onclick="switchTab('dangerous')">⚠️ <span id="dangerousTab">အန္တရာယ်များ</span></button>
+            <button class="nav-tab" onclick="switchTab('emergencies')">🚑 <span id="emergenciesTab">အရေးပေလ်</span></button>
+            <button class="nav-tab" onclick="switchTab('doctor')">👨‍⚕️ <span id="doctorTab">ဆရာဝန်များ</span></button>
+        </div>
+
+        <!-- HOME TAB -->
+        <div id="home" class="tab-content active">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🏥</div>
+                    <div class="card-title" id="homeTitle">အိမ်သုံးဆေးဝါးအကြံပြုချက်</div>
+                </div>
+
+                <div class="info-box danger-box">
+                    <div class="info-box-icon">⚠️</div>
+                    <div>
+                        <div class="info-box-header">အရေးကြီးသည့်သတိပေးချက်</div>
+                        <div>ဤအပ်လီကေးရှင်းသည် ဆရာဝန်ကုသမှုအတွက် အဖြည့်အဆည်းမျှသာ ဖြစ်သည်။ ဆရာဝန်အကြံပြုချက်မရှိဘဲ မည်သည့်ဆေးမျိုးကိုမျှ အသုံးမပြုသင့်ပါ။</div>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 18px; font-weight: 800; color: #1a1a2e; margin: 30px 0 15px 0;">📋 အိမ်သုံးဆေးဝါးအကြံပြုချက်များ</h3>
+
+                <div class="medicine-grid">
+                    <div class="medicine-item-card" onclick="showMedicineDetail('paracetamol')">
+                        <div class="medicine-item-title">💊 Paracetamol</div>
+                        <div class="medicine-item-desc">ပခုံးရောင်နဲ့ အအမုံးလုံးမြင့်ခြင်း ကုသရန်</div>
+                        <div class="medicine-item-usage">500mg - 1000mg</div>
+                        <div class="badge-row">
+                            <span class="safe-badge">အုံးမုံခြင်း</span>
+                        </div>
+                    </div>
+
+                    <div class="medicine-item-card" onclick="showMedicineDetail('ibuprofen')">
+                        <div class="medicine-item-title">💊 Ibuprofen</div>
+                        <div class="medicine-item-desc">ရောင်ခြင်းနဲ့ အအမုံးလုံးမြင့်ခြင်းကုသရန်</div>
+                        <div class="medicine-item-usage">200mg - 400mg</div>
+                        <div class="badge-row">
+                            <span class="warning-badge">သတိရှိရန်</span>
+                        </div>
+                    </div>
+
+                    <div class="medicine-item-card" onclick="showMedicineDetail('amoxicillin')">
+                        <div class="medicine-item-title">💊 Amoxicillin</div>
+                        <div class="medicine-item-desc">ဘက်တီးရီးယားအကူးအပါးချက်များကုသရန်</div>
+                        <div class="medicine-item-usage">250mg - 500mg</div>
+                        <div class="badge-row">
+                            <span class="warning-badge">ဆရာဝန်အကြံခံရန်</span>
+                        </div>
+                    </div>
+
+                    <div class="medicine-item-card" onclick="showMedicineDetail('antihistamine')">
+                        <div class="medicine-item-title">💊 Antihistamine</div>
+                        <div class="medicine-item-desc">ခုခွန်ခြင်းနဲ့ အယ်လာဂျီကုသရန်</div>
+                        <div class="medicine-item-usage">10mg</div>
+                        <div class="badge-row">
+                            <span class="safe-badge">အုံးမုံခြင်း</span>
+                        </div>
+                    </div>
+
+                    <div class="medicine-item-card" onclick="showMedicineDetail('antacid')">
+                        <div class="medicine-item-title">💊 Antacid</div>
+                        <div class="medicine-item-desc">ဗိုက်အဆီခြင်းကုသရန်</div>
+                        <div class="medicine-item-usage">30ml သို့မဟုတ် အလိုအလျောက်</div>
+                        <div class="badge-row">
+                            <span class="safe-badge">အုံးမုံခြင်း</span>
+                        </div>
+                    </div>
+
+                    <div class="medicine-item-card" onclick="showMedicineDetail('omeprazole')">
+                        <div class="medicine-item-title">💊 Omeprazole</div>
+                        <div class="medicine-item-desc">အစာလမ်းကြောင်း ဆေးမင်းခြင်းကုသရန်</div>
+                        <div class="medicine-item-usage">20mg</div>
+                        <div class="badge-row">
+                            <span class="warning-badge">ဆရာဝန်အကြံခံရန်</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MEDICINES TAB -->
+        <div id="medicines" class="tab-content hidden">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">💊</div>
+                    <div class="card-title" id="medicinesTitle">ဆေးဝါးများအသေးစိတ်</div>
+                </div>
+
+                <div id="medicinesList">
+                    <!-- PARACETAMOL -->
+                    <div class="medicine-card" onclick="expandMedicine(this)">
+                        <div class="medicine-name">
+                            💊 Paracetamol (အက်ဆီတမိုင်ဖင်)
+                            <span class="safe-badge">အုံးမုံခြင်း</span>
+                        </div>
+                        <div class="medicine-type">အခြေခံဆေး - ပခုံးရောင်နဲ့အအမုံးလုံးမြင့်ခြင်း</div>
+                        <div class="medicine-info">အသုံးပြုသည့် အခြေအနေများ အုံးမုံခြင်း / ပခုံးရောင် / အအမုံးလုံးမြင့်ခြင်း</div>
+                    </div>
+
+                    <!-- IBUPROFEN -->
+                    <div class="medicine-card" onclick="expandMedicine(this)">
+                        <div class="medicine-name">
+                            💊 Ibuprofen (အိုင်ဘူပ်ရိုဖင်)
+                            <span class="warning-badge">သတိရှိရန်</span>
+                        </div>
+                        <div class="medicine-type">အေးဆေး - ရောင်ခြင်းနဲ့အအမုံးလုံးမြင့်ခြင်း</div>
+                        <div class="medicine-info">အသုံးပြုသည့် အခြေအနေများ ရောင်ခြင်း / ခြင်းခြင်း / အအမုံးလုံးမြင့်ခြင်း</div>
+                    </div>
+
+                    <!-- AMOXICILLIN -->
+                    <div class="medicine-card" onclick="expandMedicine(this)">
+                        <div class="medicine-name">
+                            💊 Amoxicillin (အမောက်ခ်စီလင်)
+                            <span class="danger-badge">ဆရာဝန်အကြံခံရန်</span>
+                        </div>
+                        <div class="medicine-type">ပဋ္ဌာဏုဆေး - ဘက်တီးရီးယားအကူးအပါးချက်များ</div>
+                        <div class="medicine-info">အသုံးပြုသည့် အခြေအနေများ နားထိခိုက်ခြင်း / ကျောခါးထိခိုက်ခြင်း / ရောင်ခြင်း</div>
+                    </div>
+
+                    <!-- ANTIHISTAMINE -->
+                    <div class="medicine-card" onclick="expandMedicine(this)">
+                        <div class="medicine-name">
+                            💊 Antihistamine (အန္တီဟီစ်တမင်း)
+                            <span class="safe-badge">အုံးမုံခြင်း</span>
+                        </div>
+                        <div class="medicine-type">အယ်လာဂျီဆေး - ခုခွန်ခြင်းနဲ့အယ်လာဂျီ</div>
+                        <div class="medicine-info">အသုံးပြုသည့် အခြေအနေများ ခုခွန်ခြင်း / အယ်လာဂျီခြင်း / ကျောခါးထိခိုက်ခြင်း</div>
+                    </div>
+
+                    <!-- ANTACID -->
+                    <div class="medicine-card" onclick="expandMedicine(this)">
+                        <div class="medicine-name">
+                            💊 Antacid (အန္တအက်ဆစ်)
+                            <span class="safe-badge">အုံးမုံခြင်း</span>
+                        </div>
+                        <div class="medicine-type">အစာလမ်းကြောင်းဆေး - ဗိုက်အဆီခြင်း</div>
+                        <div class="medicine-info">အသုံးပြုသည့် အခြေအနေများ ဗိုက်အဆီခြင်း / အစာအစုံခြင်း / အစာမကြေခြင်း</div>
+                    </div>
+
+                    <!-- OMEPRAZOLE -->
+                    <div class="medicine-card" onclick="expandMedicine(this)">
+                        <div class="medicine-name">
+                            💊 Omeprazole (အိုမီပ်ရာဇုံ)
+                            <span class="warning-badge">ဆရာဝန်အကြံခံရန်</span>
+                        </div>
+                        <div class="medicine-type">ပီပီအိုဆေး - အစာလမ်းကြောင်းရောင်ခြင်း</div>
+                        <div class="medicine-info">အသုံးပြုသည့် အခြေအနေများ အစာလမ်းကြောင်းရောင်ခြင်း / အစာဆေးခြင်း</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SYMPTOMS TAB -->
+        <div id="symptoms" class="tab-content hidden">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🤒</div>
+                    <div class="card-title" id="symptomsTitle">လက္ခဏာများအလိုက်ဆေးကြံပြုချက်</div>
+                </div>
+
+                <div class="symptom-list">
+                    <div class="symptom-item" onclick="showSymptomInfo('fever', this)">
+                        <div class="symptom-icon">🌡️</div>
+                        <div class="symptom-name" id="symptomFever">အအမုံးလုံးမြင့်ခြင်း</div>
+                    </div>
+                    <div class="symptom-item" onclick="showSymptomInfo('cough', this)">
+                        <div class="symptom-icon">🤧</div>
+                        <div class="symptom-name" id="symptomCough">खांसी / အတုံးခြင်း</div>
+                    </div>
+                    <div class="symptom-item" onclick="showSymptomInfo('pain', this)">
+                        <div class="symptom-icon">😣</div>
+                        <div class="symptom-name" id="symptomPain">ခြင်းခြင်း</div>
+                    </div>
+                    <div class="symptom-item" onclick="showSymptomInfo('cold', this)">
+                        <div class="symptom-icon">🧊</div>
+                        <div class="symptom-name" id="symptomCold">အအေးခြင်း</div>
+                    </div>
+                    <div class="symptom-item" onclick="showSymptomInfo('allergy', this)">
+                        <div class="symptom-icon">🤧</div>
+                        <div class="symptom-name" id="symptomAllergy">အယ်လာဂျီခြင်း</div>
+                    </div>
+                    <div class="symptom-item" onclick="showSymptomInfo('heartburn', this)">
+                        <div class="symptom-icon">🔥</div>
+                        <div class="symptom-name" id="symptomHeartburn">ဗိုက်အဆီခြင်း</div>
+                    </div>
+                    <div class="symptom-item" onclick="showSymptomInfo('diarrhea', this)">
+                        <div class="symptom-icon">🚽</div>
+                        <div class="symptom-name" id="symptomDiarrhea">ဝမ်းလျင်ခြင်း</div>
+                    </div>
+                    <div class="symptom-item" onclick="showSymptomInfo('constipation', this)">
+                        <div class="symptom-icon">💩</div>
+                        <div class="symptom-name" id="symptomConstipation">ဝမ်းခုန်လုံခြင်း</div>
+                    </div>
+                </div>
+
+                <div id="symptomDetailBox" style="margin-top: 30px; display: none;">
+                    <div class="info-box success-box">
+                        <div class="info-box-icon" id="symptomDetailIcon">🤒</div>
+                        <div>
+                            <div class="info-box-header" id="symptomDetailName">လက္ခဏာအမည်</div>
+                            <div id="symptomDetailDesc">လက္ခဏာအသေးစိတ်ကြည့်ရှုခြင်း</div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top: 20px; font-size: 16px; font-weight: 700;">💊 ကြံပြုချက်ဆေးများ</h4>
+                    <div id="symptomMedicines" style="margin-top: 15px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DANGEROUS TAB -->
+        <div id="dangerous" class="tab-content hidden">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">⚠️</div>
+                    <div class="card-title" id="dangerousTitle">အန္တရာယ်ရှိသောဆေးများ</div>
+                </div>
+
+                <div class="info-box danger-box">
+                    <div class="info-box-icon">🚨</div>
+                    <div>
+                        <div class="info-box-header">အန္တရာယ်အတိုင်းအတာ</div>
+                        <div>အောက်ဖေါ်ပြထားသောဆေးများသည် အန္တရာယ်ရှိသည်။ ဆရာဝန်အကြံခံမှီ မည်သည့်အခါမျိုးမျိုး အသုံးမပြုသင့်ပါ။</div>
+                    </div>
+                </div>
+
+                <div class="medicine-card active" style="margin-top: 20px;">
+                    <div class="medicine-name">❌ Aspirin (အက်စပရင်)</div>
+                    <div class="medicine-type">အန္တရာယ်အဆင့် - အလွန်ကျေးဇူးမားခြင်း</div>
+                    <div class="medicine-info">
+                        <strong>အန္တရာယ်များ:</strong><br>
+                        • သွေးအခြင်းခြင်း<br>
+                        • အစာလမ်းကြောင်းထိခိုက်ခြင်း<br>
+                        • ကိုယ်အတည်းအခြေအနေများ<br>
+                        • မကြေးကြေးခြင်း
+                    </div>
+                </div>
+
+                <div class="medicine-card active">
+                    <div class="medicine-name">❌ Methotrexate (မက်သိုထရီးဆတ်)</div>
+                    <div class="medicine-type">အန္တရာယ်အဆင့် - အလွန်ကျေးဇူးမားခြင်း</div>
+                    <div class="medicine-info">
+                        <strong>အန္တရာယ်များ:</strong><br>
+                        • ခြင်းကုန်ခြင်း<br>
+                        • အုံးမုံအားခွေးခြင်း<br>
+                        • အကျိုးအကောင်းမဆန်းခြင်း<br>
+                        • အသုံးအနှုံးအားခွေးခြင်း
+                    </div>
+                </div>
+
+                <div class="medicine-card active">
+                    <div class="medicine-name">❌ Corticosteroids (ကော်ရ်တီကိုစ်တီးရိုအိုင်းဒ်)</div>
+                    <div class="medicine-type">အန္တရာယ်အဆင့် - အလွန်ကျေးဇူးမားခြင်း</div>
+                    <div class="medicine-info">
+                        <strong>အန္တရာယ်များ:</strong><br>
+                        • ဆီခြင်းများ<br>
+                        • အုံးမုံအားခွေးခြင်း<br>
+                        • အစာကြေးခြင်း<br>
+                        • အသုံးအနှုံးအားခွေးခြင်း
+                    </div>
+                </div>
+
+                <div class="medicine-card active">
+                    <div class="medicine-name">❌ Warfarin (ဆားဖရင်း)</div>
+                    <div class="medicine-type">အန္တရာယ်အဆင့် - အလွန်ကျေးဇူးမားခြင်း</div>
+                    <div class="medicine-info">
+                        <strong>အန္တရာယ်များ:</strong><br>
+                        • သွေးလည်ပတ်မှုအန္တရာယ်<br>
+                        • အတွင်းထိခိုက်ခြင်း<br>
+                        • သွေးအခြင်းခြင်း<br>
+                        • အားလုံးထိခိုက်ခြင်း
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EMERGENCIES TAB -->
+        <div id="emergencies" class="tab-content hidden">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🚑</div>
+                    <div class="card-title" id="emergenciesTitle">အရေးပေလ်အခြေအနေများ</div>
+                </div>
+
+                <div class="info-box danger-box">
+                    <div class="info-box-icon">🚨</div>
+                    <div>
+                        <div class="info-box-header">ချက်ချင်းဆေးရုံသွားရန်</div>
+                        <div>အောက်ဖေါ်ပြထားသောအခြေအနေများတွင် ချက်ချင်းအရေးပေလ်ဆေးရုံ သို့ သွားပါ။</div>
+                    </div>
+                </div>
+
+                <div class="medicine-card active" style="margin-top: 20px;">
+                    <div class="medicine-name">🚑 ပြင်းထန်သောပခုံးရောင် (၄၀°C အထက်)</div>
+                    <div class="medicine-type">အရေးပေလ်အခြေအနေ - ချက်ချင်းဆေးရုံသွားရန်</div>
+                    <div class="medicine-info">
+                        <strong>အလုံးအတွေးများ:</strong><br>
+                        • အုံးမုံခြင်း (၄၀°C အထက်)<br>
+                        • သုံးရက်အထက် ကျေးဇူးမားခြင်း<br>
+                        • အုံးမုံခြင်းတစ်ပါတ်အကြည့်ကြည့်ခြင်း<br>
+                        • အမုံးလုံးမြင့်ခြင်းနှင့် အုံးအုံးခြင်း
+                    </div>
+                </div>
+
+                <div class="medicine-card active">
+                    <div class="medicine-name">🚑 အသုံးအနှုံးအားခွေးခြင်း / ခြင်းကုန်ခြင်း</div>
+                    <div class="medicine-type">အရေးပေလ်အခြေအနေ - ချက်ချင်းဆေးရုံသွားရန်</div>
+                    <div class="medicine-info">
+                        <strong>အလုံးအတွေးများ:</strong><br>
+                        • အုံးအုံးခြင်း / အုံးအုံးခြင်း<br>
+                        • အုံးမုံခြင်းကျေးဇူးမားခြင်း<br>
+                        • အုံးအုံးခြင်းအုံးအုံးခြင်း<br>
+                        • အုံးမုံခြင်းအုံးအုံးခြင်း
+                    </div>
+                </div>
+
+                <div class="medicine-card active">
+                    <div class="medicine-name">🚑 အားလုံးထိခိုက်ခြင်း / နှလုံးခုန်အလုံးအစုံ</div>
+                    <div class="medicine-type">အရေးပေလ်အခြေအနေ - ချက်ချင်းအရေးပေလ်ခေါ်ယူမည်</div>
+                    <div class="medicine-info">
+                        <strong>အလုံးအတွေးများ:</strong><br>
+                        • အုံးအုံးခြင်းအုံးအုံးခြင်း<br>
+                        • နှလုံးခုန်အလုံးအစုံ<br>
+                        • အုံးအုံးခြင်း / အုံးအုံးခြင်း<br>
+                        • အုံးမုံခြင်းအုံးအုံးခြင်း
+                    </div>
+                </div>
+
+                <div class="medicine-card active">
+                    <div class="medicine-name">🚑 သွေးအခြင်းခြင်း / အုံးမုံခြင်းအုံးအုံးခြင်း</div>
+                    <div class="medicine-type">အရေးပေလ်အခြေအနေ - ချက်ချင်းဆေးရုံသွားရန်</div>
+                    <div class="medicine-info">
+                        <strong>အလုံးအတွေးများ:</strong><br>
+                        • အုံးမုံခြင်းအုံးအုံးခြင်း<br>
+                        • သွေးအုံးအုံးခြင်း<br>
+                        • အုံးအုံးခြင်းအုံးအုံးခြင်း<br>
+                        • အုံးမုံခြင်းချက်ချင်းကုသရန်
+                    </div>
+                </div>
+
+                <button class="btn btn-danger btn-block" style="margin-top: 20px; padding: 15px; font-size: 16px;" onclick="callEmergency()">🚑 <span id="callEmergency">ချက်ချင်းအရေးပေလ်ခေါ်ယူမည်</span></button>
+            </div>
+        </div>
+
+        <!-- DOCTOR TAB -->
+        <div id="doctor" class="tab-content hidden">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">👨‍⚕️</div>
+                    <div class="card-title" id="doctorTitle">ဆရာဝန်ခြံရဖွယ်များ</div>
+                </div>
+
+                <h3 style="font-size: 18px; font-weight: 800; color: #1a1a2e; margin: 20px 0 15px 0;">📍 ရန်ကုန်မြို့ အဆေးခန်းများ</h3>
+
+                <div class="doctor-location-card">
+                    <div class="doctor-location-name">🏥 အဆေးခန်းအကြီးမား - ရန်ကုန်</div>
+                    <div class="doctor-location-info">
+                        📍 Address: အဆေးခန်းအကြီးမား, ရန်ကုန်<br>
+                        📞 Phone: 01-202300 / 01-202301<br>
+                        🕐 Time: 24 hours / 7 days<br>
+                        💰 Cost: ဝယ်ယူမှုအလိုက်ကွဲခြားမည်
+                    </div>
+                    <div class="doctor-location-distance">📏 အကွာအဝေး: 2.5 km</div>
+                    <button class="btn btn-primary doctor-call-btn" onclick="callDoctor('01-202300')">📞 ခေါ်ယူမည်</button>
+                </div>
+
+                <div class="doctor-location-card">
+                    <div class="doctor-location-name">🏥 ရန်ကုန်အစ်မအဆေးခန်း</div>
+                    <div class="doctor-location-info">
+                        📍 Address: ရန်ကုန်အစ်မအဆေးခန်း<br>
+                        📞 Phone: 01-558003 / 01-558004<br>
+                        🕐 Time: 6:00 AM - 10:00 PM<br>
+                        💰 Cost: ဝယ်ယူမှုအလိုက်ကွဲခြားမည်
+                    </div>
+                    <div class="doctor-location-distance">📏 အကွာအဝေး: 3.2 km</div>
+                    <button class="btn btn-primary doctor-call-btn" onclick="callDoctor('01-558003')">📞 ခေါ်ယူမည်</button>
+                </div>
+
+                <div class="doctor-location-card">
+                    <div class="doctor-location-name">🏥 နီမြန်ကုန်အဆေးခန်း</div>
+                    <div class="doctor-location-info">
+                        📍 Address: နီမြန်ကုန်အဆေးခန်း<br>
+                        📞 Phone: 09-250000 / 09-250001<br>
+                        🕐 Time: 24 hours / 7 days<br>
+                        💰 Cost: ဝယ်ယူမှုအလိုက်ကွဲခြားမည်
+                    </div>
+                    <div class="doctor-location-distance">📏 အကွာအဝေး: 1.8 km</div>
+                    <button class="btn btn-primary doctor-call-btn" onclick="callDoctor('09-250000')">📞 ခေါ်ယူမည်</button>
+                </div>
+
+                <h3 style="font-size: 18px; font-weight: 800; color: #1a1a2e; margin: 30px 0 15px 0;">📋 အွန်လိုင်းဆလင်္ဂ်ဘူတင်များ</h3>
+
+                <div class="info-box success-box">
+                    <div class="info-box-icon">💻</div>
+                    <div>
+                        <div class="info-box-header">အွန်လိုင်းဆလင်္ဂ်ဘူတင်</div>
+                        <div>
+                            🔗 Telemedicine: www.tele-medicine.com.mm<br>
+                            🔗 Online Doctor: www.online-doctor.com.mm<br>
+                            🔗 24/7 Hotline: 01-2000-3000
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; color: #999; padding: 30px; margin-top: 30px; font-size: 12px;">
+            <p>💊 Home Medicine Guide | 2024 Medical Assistant</p>
+            <p id="disclaimerText">ℹ️ ဤအပ်လီကေးရှင်းသည် ဆရာဝန်အကြံပြုချက်မဟုတ်သည်။ အစုံမှီခြင်းအခါ ဆရာဝန်ထံသွားပါ။</p>
+        </div>
+    </div>
+
+    <!-- MEDICINE DETAIL MODAL -->
+    <div id="medicineModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalMedicineName">ဆေးအမည်</div>
+                <button class="modal-close" onclick="closeMedicineModal()">✕</button>
+            </div>
+
+            <table class="dosage-table">
+                <thead>
+                    <tr>
+                        <th id="ageGroupCol">အသက်အုံးအုံးခြင်း</th>
+                        <th id="dosageCol">ခွင့်ပြုခြင်းအချိန်</th>
+                        <th id="frequencyCol">အကြိမ်အရေအတွက်</th>
+                    </tr>
+                </thead>
+                <tbody id="dosageTableBody">
+                    <!-- Dynamically filled -->
+                </tbody>
+            </table>
+
+            <h4 style="margin-top: 20px; font-weight: 700;">⚠️ သတိပေးချက်များ</h4>
+            <div id="medicineWarnings" style="font-size: 12px; line-height: 1.8; margin-top: 10px;"></div>
+
+            <h4 style="margin-top: 20px; font-weight: 700;">🚫 အသုံးမပြုရ သည့် အခြေအနေများ</h4>
+            <div id="medicineContraindications" style="font-size: 12px; line-height: 1.8; margin-top: 10px;"></div>
+
+            <h4 style="margin-top: 20px; font-weight: 700;">💊 အကျိုးသက်ဆိုင်ရာ ဆေးများ</h4>
+            <div id="medicineInteractions" style="font-size: 12px; line-height: 1.8; margin-top: 10px;"></div>
+
+            <button class="btn btn-primary btn-block" style="margin-top: 20px;" onclick="closeMedicineModal()">✓ အဆင်ပြေပါသည်</button>
+        </div>
+    </div>
+
+    <script>
+        // ============== TRANSLATIONS ==============
+        const translations = {
+            my: {
+                headerSub: 'အိမ်သုံးဆေးဝါးလမ်းညွန်',
+                disclaimerText: 'ဤအပ်လီကေးရှင်းသည် ဆရာဝန်အကြံပြုချက်မဟုတ်သည်။ အစုံမှီခြင်းအခါ ဆရာဝန်ထံသွားပါ။'
+            },
+            en: {
+                headerSub: 'Home Medicine Guide',
+                disclaimerText: 'This app is not a substitute for medical advice. Consult a doctor when in doubt.'
+            },
+            th: {
+                headerSub: 'คู่มือเวชสนามบ้าน',
+                disclaimerText: 'แอปนี้ไม่ใช่ทดแทนคำแนะนำทางการแพทย์ ปรึกษาแพทย์เมื่อสงสัย'
+            }
+        };
+
+        // ============== MEDICINE DATA ==============
+        const medicineDatabase = {
+            paracetamol: {
+                name: 'Paracetamol',
+                type: 'Analgesic',
+                dosage: [
+                    { age: 'အသက် 6 လ - 1 နှစ်', dose: '60-120mg', frequency: '၄ အကြိမ်/နေ့' },
+                    { age: 'အသက် 1-5 နှစ်', dose: '120-250mg', frequency: '၄ အကြိမ်/နေ့' },
+                    { age: 'အသက် 6-12 နှစ်', dose: '250-500mg', frequency: '၄ အကြိမ်/နေ့' },
+                    { age: 'အသက် 12+ / အရွယ်ရောက်', dose: '500-1000mg', frequency: '၄ အကြိမ်/နေ့' }
+                ],
+                warnings: '• အစုံမှီခြင်းအခါ ရုံးအုံးမုံခြင်း အထက် အသုံးမပြုရ\n• အကျိုးကုန်ခြင်း အန္တရာယ်ရှိ\n• အရည်အဆန်းအုံးအုံးခြင်း မလုပ်ရ',
+                contraindications: '• အကျိုးကုန်ခြင်းထိခိုက်ခြင်း\n• အုံးအုံးခြင်းအုံးအုံးခြင်း\n• အုံးအုံးခြင်း အုံးခြင်းအုံးအုံးခြင်း',
+                interactions: '• အုံးအုံးခြင်းဆေး\n• အုံးအုံးခြင်းဆေး\n• အုံးအုံးခြင်းဆေး'
+            },
+            ibuprofen: {
+                name: 'Ibuprofen',
+                type: 'NSAID',
+                dosage: [
+                    { age: 'အသက် 3 လ - 1 နှစ်', dose: '50mg', frequency: '၃ အကြိမ်/နေ့' },
+                    { age: 'အသက် 1-3 နှစ်', dose: '100mg', frequency: '၃ အကြိမ်/နေ့' },
+                    { age: 'အသက် 4-6 နှစ်', dose: '150mg', frequency: '၃ အကြိမ်/နေ့' },
+                    { age: 'အသက် 7-9 နှစ်', dose: '200mg', frequency: '၃ အကြိမ်/နေ့' },
+                    { age: 'အသက် 10-12 နှစ်', dose: '300mg', frequency: '၃ အကြိမ်/နေ့' },
+                    { age: 'အသက် 12+ / အရွယ်ရောက်', dose: '200-400mg', frequency: '၃-၄ အကြိမ်/နေ့' }
+                ],
+                warnings: '• ဗိုက်အဆီခြင်း အန္တရာယ်ရှိ\n• အုံးမုံခြင်းအုံးအုံးခြင်း မလုပ်ရ\n• အုံးအုံးခြင်း အုံးအုံးခြင်း မလုပ်ရ',
+                contraindications: '• အုံးအုံးခြင်း အုံးခြင်း\n• အုံးအုံးခြင်း အုံးအုံးခြင်း\n• အုံးအုံးခြင်း အုံးခြင်း',
+                interactions: '• အုံးအုံးခြင်းဆေး\n• အုံးအုံးခြင်းဆေး'
+            }
+        };
+
+        // ============== STATE ==============
+        let state = {
+            currentLanguage: 'my',
+            currentTab: 'home'
+        };
+
+        // ============== INITIALIZATION ==============
+        function init() {
+            setLanguage('my');
+        }
+
+        // ============== LANGUAGE ==============
+        function setLanguage(lang) {
+            state.currentLanguage = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            if (lang === 'my') document.getElementById('myBtn').classList.add('active');
+            else if (lang === 'en') document.getElementById('enBtn').classList.add('active');
+            else document.getElementById('thBtn').classList.add('active');
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById('headerSub').textContent = translations[state.currentLanguage].headerSub || translations['en'].headerSub;
+            document.getElementById('disclaimerText').textContent = translations[state.currentLanguage].disclaimerText || translations['en'].disclaimerText;
+        }
+
+        // ============== TAB SWITCHING ==============
+        function switchTab(tab) {
+            state.currentTab = tab;
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tab).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.nav-tab').classList.add('active');
+        }
+
+        // ============== SEARCH ==============
+        function searchMedicines() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            if (!query) {
+                showAlert('ဆေးအမည် သို့မဟုတ်လက္ခဏာများ ရေးပါ', 'warning');
+                return;
+            }
+            showAlert('ရှာဖွေစဉ်... ' + query, 'info');
+            switchTab('medicines');
+        }
+
+        // ============== MEDICINE DETAILS ==============
+        function showMedicineDetail(medicineName) {
+            const medicine = medicineDatabase[medicineName];
+            if (!medicine) {
+                showAlert('ဆေးအချက်အလက် မတွေ့ရှိသည်', 'warning');
+                return;
+            }
+
+            document.getElementById('modalMedicineName').textContent = medicine.name;
+            
+            let dosageHTML = '';
+            medicine.dosage.forEach(d => {
+                dosageHTML += `<tr>
+                    <td>${d.age}</td>
+                    <td>${d.dose}</td>
+                    <td>${d.frequency}</td>
+                </tr>`;
+            });
+            document.getElementById('dosageTableBody').innerHTML = dosageHTML;
+
+            document.getElementById('medicineWarnings').innerHTML = medicine.warnings;
+            document.getElementById('medicineContraindications').innerHTML = medicine.contraindications;
+            document.getElementById('medicineInteractions').innerHTML = medicine.interactions;
+
+            document.getElementById('medicineModal').classList.add('active');
+        }
+
+        function closeMedicineModal() {
+            document.getElementById('medicineModal').classList.remove('active');
+        }
+
+        // ============== SYMPTOMS ==============
+        function showSymptomInfo(symptom, element) {
+            document.querySelectorAll('.symptom-item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+
+            const symptomData = {
+                fever: {
+                    name: '🌡️ အအမုံးလုံးမြင့်ခြင်း',
+                    desc: 'ခန္ဒာကိုယ် အပူချိန် ၃၇.၅°C အထက်',
+                    medicines: [
+                        { name: 'Paracetamol', dose: '500-1000mg', freq: '၄ အကြိမ်/နေ့' },
+                        { name: 'Ibuprofen', dose: '200-400mg', freq: '၃-၄ အကြိမ်/နေ့' }
+                    ]
+                },
+                cough: {
+                    name: '🤧 အတုံးခြင်း',
+                    desc: 'အသုံးအနှုံးအုံးအုံးခြင်း',
+                    medicines: [
+                        { name: 'Cough Syrup', dose: '၅ml', freq: '၃ အကြိမ်/နေ့' },
+                        { name: 'Lozenges', dose: '၁ လုံး', freq: 'လိုအပ်သည့်အခါ' }
+                    ]
+                },
+                pain: {
+                    name: '😣 ခြင်းခြင်း',
+                    desc: 'အုံးအုံးခြင်းအုံးအုံးခြင်း',
+                    medicines: [
+                        { name: 'Paracetamol', dose: '500mg', freq: '၆ အကြိမ်မှ ၈ အကြိမ်/နေ့' },
+                        { name: 'Ibuprofen', dose: '400mg', freq: '၆ အကြိမ်မှ ၈ အကြိမ်/နေ့' }
+                    ]
+                },
+                cold: {
+                    name: '🧊 အအေးခြင်း',
+                    desc: 'အုံးအုံးခြင်း / အုံးအုံးခြင်း',
+                    medicines: [
+                        { name: 'Vitamin C', dose: '၁၀၀၀mg', freq: '၁ အကြိမ်/နေ့' },
+                        { name: 'Rest & Fluids', dose: 'အလုံးအစုံ', freq: '၂၄ နာရီ/နေ့' }
+                    ]
+                },
+                allergy: {
+                    name: '🤧 အယ်လာဂျီခြင်း',
+                    desc: 'အုံးအုံးခြင်း / ခုခွန်ခြင်း',
+                    medicines: [
+                        { name: 'Antihistamine', dose: '၁၀mg', freq: '၁ သို့ ၂ အကြိမ်/နေ့' },
+                        { name: 'Decongestant', dose: '၁ အုံး', freq: '၆ အကြိမ် ကြားခွင်း' }
+                    ]
+                },
+                heartburn: {
+                    name: '🔥 ဗိုက်အဆီခြင်း',
+                    desc: 'အစာလမ်းကြောင်းအုံးအုံးခြင်း',
+                    medicines: [
+                        { name: 'Antacid', dose: '၃၀ml', freq: 'လိုအပ်သည့်အခါ' },
+                        { name: 'Omeprazole', dose: '၂၀mg', freq: '၁ အကြိမ်/နေ့' }
+                    ]
+                },
+                diarrhea: {
+                    name: '🚽 ဝမ်းလျင်ခြင်း',
+                    desc: 'ဗိုက်လုံးခြုံစွာ အုံးအုံးခြင်း',
+                    medicines: [
+                        { name: 'ORS', dose: '၁ ငွေ့အုံး/နာရီ', freq: 'လုံးခြုံစွာ' },
+                        { name: 'Loperamide', dose: '၂mg', freq: '၂ အကြိမ်/နေ့' }
+                    ]
+                },
+                constipation: {
+                    name: '💩 ဝမ်းခုန်လုံခြင်း',
+                    desc: 'ဝမ်းအုံးလုံခြင်း',
+                    medicines: [
+                        { name: 'Laxative', dose: 'အလိုအလျောက်', freq: '၁ အကြိမ်/နေ့' },
+                        { name: 'Fiber', dose: '၅-၁၀g', freq: '၂ အကြိမ်/နေ့' }
+                    ]
+                }
+            };
+
+            const data = symptomData[symptom];
+            if (data) {
+                document.getElementById('symptomDetailIcon').textContent = data.name.split(' ')[0];
+                document.getElementById('symptomDetailName').textContent = data.name;
+                document.getElementById('symptomDetailDesc').textContent = data.desc;
+
+                let medicinesHTML = '';
+                data.medicines.forEach(med => {
+                    medicinesHTML += `<div style="background: #F1F8E9; padding: 10px; margin-bottom: 10px; border-radius: 8px; border-left: 3px solid #4CAF50;">
+                        <strong>${med.name}</strong> - ${med.dose} | ${med.freq}
+                    </div>`;
+                });
+                document.getElementById('symptomMedicines').innerHTML = medicinesHTML;
+                
+                document.getElementById('symptomDetailBox').style.display = 'block';
+            }
+        }
+
+        // ============== EMERGENCY ==============
+        function callEmergency() {
+            showAlert('🚨 အရေးပေလ်ခေါ်နေလျက်ရှိသည်... 911', 'danger');
+            setTimeout(() => {
+                window.location.href = 'tel:911';
+            }, 500);
+        }
+
+        function callDoctor(number) {
+            showAlert('📞 ဆရာဝန်ခေါ်နေလျက်ရှိသည်...', 'info');
+            setTimeout(() => {
+                window.location.href = `tel:${number}`;
+            }, 500);
+        }
+
+        // ============== ALERTS ==============
+        function showAlert(message, type = 'info') {
+            const alert = document.createElement('div');
+            alert.className = `alert ${type}`;
+            alert.innerHTML = `<span style="font-size: 18px;">${
+                type === 'success' ? '✓' :
+                type === 'warning' ? '⚠️' :
+                type === 'danger' ? '🚨' :
+                'ℹ️'
+            }</span><span>${message}</span>`;
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 4000);
+        }
+
+        // ============== EXPAND MEDICINE ==============
+        function expandMedicine(element) {
+            const medicineName = element.querySelector('.medicine-name').textContent.split('\n')[0];
+            showAlert('ဆေးအချက်အလက် ကြည့်ရှုစဉ်...', 'info');
+        }
+
+        // ============== INITIALIZATION ==============
+        window.addEventListener('load', init);
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
+```
